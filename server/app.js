@@ -4,6 +4,10 @@ const app = express();
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+//Import routers
+const userRouter = require("./src/routers/userRouter");
+const ticketRouter = require("./src/routers/ticketRouter");
+const tokensRouter = require("./src/routers/tokensRouter");
 const port = process.env.PORT || 2000;
 
 //API security
@@ -38,10 +42,6 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use(express.json)
 
-//Import routers
-const userRouter = require("./src/routers/user.router");
-const ticketRouter = require("./src/routers/ticket.router");
-const tokensRouter = require("./src/routers/tokens.router");
 
 //Use Routers
 app.use("/user", userRouter);

@@ -1,19 +1,8 @@
 const express = require("express");
-const { route, post } = require("./ticket.router");
 const router = express.Router();
 const { createNewUser, loginUser, resetPassword, updatePassword, logoutUser, verifyUser } = require("../controllers/authController")
-const {
-	insertUser,
-	getUserByEmail,
-	getUserById,
-	updatePassword,
-	storeUserRefreshJWT,
-	verifyUser,
-} = require("../model/user/User.model");
-
-const {
-	userAuthorization,
-} = require("../middlewares/authorization.middleware");
+const { getUserProfile } = require("../controllers/userController")
+const { userAuthorization } = require("../middlewares/authorization.middleware");
 
 const {
 	resetPassReqValidation,
@@ -22,7 +11,7 @@ const {
 } = require("../middlewares/formValidation.middleware");
 
 
-const verificationURL = "http://localhost:3000/verification/";
+//const verificationURL = "http://localhost:3000/verification/";
 
 router.all("/", (req, res, next) => {
 	// res.json({ message: "return form user router" });
@@ -31,20 +20,7 @@ router.all("/", (req, res, next) => {
 });
 
 // Get user profile router
-router.get("/", userAuthorization, async (req, res) => {
-	//this data coming form database
-	const _id = req.userId;
-
-	const userProf = await getUserById(_id);
-	const { name, email } = userProf;
-	res.json({
-		user: {
-			_id,
-			name,
-			email,
-		},
-	});
-});
+router.get("/", userAuthorization, getUserProfile);
 
 ///very user after user is sign up
 router.patch("/verify", verifyUser);

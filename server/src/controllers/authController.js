@@ -2,7 +2,6 @@ const User=require("../model/user/User.schema")
 const {
 	insertUser,
 	getUserByEmail,
-	getUserById,
 	updatePassword,
 	storeUserRefreshJWT,
 	verifyUser,
@@ -35,6 +34,7 @@ exports.createNewUser = async (req, res) => {
 			email,
 			password: hashedPass,
 		};
+
 		const result = await insertUser(newUserObj);
 		console.log(result);
 
