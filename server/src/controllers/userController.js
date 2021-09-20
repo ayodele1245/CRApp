@@ -1,7 +1,7 @@
 const { getUserById } = require("../model/user/User.model");
 
 
-exports.getUserProfile=async (req, res) => {
+const getUserProfile=async (req, res) => {
 	//this data coming form database
 	const _id = req.userId;
 
@@ -17,3 +17,6 @@ exports.getUserProfile=async (req, res) => {
 };
 
 
+module.exports = {
+	getUserProfile,
+}

@@ -4,7 +4,7 @@ const {
 	getUserByEmail,
 	updatePassword,
 	storeUserRefreshJWT,
-	verifyUser,
+	verify,
 } = require("../model/user/User.model");
 const {
 	setPasswordRestPin,
@@ -14,12 +14,12 @@ const {
 const { emailProcessor } = require("../helpers/email.helper");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helper");
 const { crateAccessJWT, crateRefreshJWT } = require("../helpers/jwt.helper");
-const { verify } = require("jsonwebtoken");
+//const { verify } = require("jsonwebtoken");
 
 const { deleteJWT } = require("../helpers/redis.helper");
+const verificationURL = "http://localhost:3000/verification/";
 
-
-exports.createNewUser = async (req, res) => {
+const createNewUser = async (req, res) => {
 	const { name, company, address, phone, email, password } = req.body;
 
 	try {
@@ -58,7 +58,7 @@ exports.createNewUser = async (req, res) => {
 };
 
 
-exports.loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
 	console.log(req.body);
 	const { email, password } = req.body;
 	if (!email || !password) {
@@ -96,7 +96,7 @@ exports.loginUser = async (req, res) => {
 
 
 
-exports.resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
 	const { email } = req.body;
 
 	const user = await getUserByEmail(email);
@@ -119,7 +119,7 @@ exports.resetPassword = async (req, res) => {
 };
 
 
-exports.updatePassword = async (req, res) => {
+const updtPassword = async (req, res) => {
 	const { email, pin, newPassword } = req.body;
 
 	const getPin = await getPinByEmailPin(email, pin);
@@ -161,7 +161,7 @@ exports.updatePassword = async (req, res) => {
 };
 
 
-exports.logoutUser = async (req, res) => {
+const logoutUser = async (req, res) => {
 	const { authorization } = req.headers;
 	//this data is coming form database
 	const _id = req.userId;
@@ -184,17 +184,17 @@ exports.logoutUser = async (req, res) => {
 
 
 
-exports.verifyUser = async (req, res) => {
+const verifyUser = async (req, res) => {
 	try {
 		const { _id, email } = req.body;
 		console.log(_id, email);
 
-		const result = await verifyUser(_id, email);
+		const result = await verify(_id, email);
 
 		if (result && result.id) {
 			return res.json({
 				status: "success",
-				message: "You account has been activated, you may sign in now.",
+				message: "Your account has been activated, you may sign in now.",
 			});
 		}
 
@@ -210,3 +210,13 @@ exports.verifyUser = async (req, res) => {
 		});
 	}
 };
+
+
+module.exports = {
+	createNewUser,
+	loginUser,
+	resetPassword,
+	updtPassword,
+	logoutUser,
+	verifyUser,
+}

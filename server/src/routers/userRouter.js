@@ -1,6 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { createNewUser, loginUser, resetPassword, updatePassword, logoutUser, verifyUser } = require("../controllers/authController")
+const { createNewUser, 
+		loginUser, 
+		resetPassword, 
+		updtPassword, 
+		logoutUser, 
+		verifyUser 
+		} = require("../controllers/authController");
 const { getUserProfile } = require("../controllers/userController")
 const { userAuthorization } = require("../middlewares/authorization.middleware");
 
@@ -11,7 +17,7 @@ const {
 } = require("../middlewares/formValidation.middleware");
 
 
-//const verificationURL = "http://localhost:3000/verification/";
+
 
 router.all("/", (req, res, next) => {
 	// res.json({ message: "return form user router" });
@@ -31,7 +37,7 @@ router.post("/", newUserValidation, createNewUser)
 router.post("/login", loginUser)
 router.post("/reset-password", resetPassReqValidation, resetPassword);
 
-router.patch("/reset-password", updatePassValidation, updatePassword);
+router.patch("/reset-password", updatePassValidation, updtPassword);
 // User logout and invalidate jwts
 
 router.delete("/logout", userAuthorization, logoutUser);

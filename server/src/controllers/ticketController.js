@@ -7,18 +7,19 @@ const {
     deleteTicket,
   } = require("../model/ticket/Ticket.model");
 
-  exports.createNewTicket = async (req, res) => {
+  const createNewTicket = async (req, res) => {
     try {
       const { subject, sender, message } = req.body;
 
       const userId = req.userId;
+      const msgsender= req.sender;
 
       const ticketObj = {
         clientId: userId,
         subject,
         conversations: [
           {
-            sender,
+            sender: msgsender,
             message,
           },
         ],
@@ -43,7 +44,7 @@ const {
   };
 
 
-  exports.getTickets =async (req, res) => {
+  const getAllTickets =async (req, res) => {
     try {
       const userId = req.userId;
       const result = await getTickets(userId);
@@ -58,7 +59,7 @@ const {
   };
   
   
-  exports.getUserTickets = async (req, res) => {
+  const getUserTickets = async (req, res) => {
     try {
       const { _id } = req.params;
   
@@ -75,7 +76,7 @@ const {
   };
   
 
-  exports.updateUserTicket = async (req, res) => {
+  const updateUserTicket = async (req, res) => {
     try {
       const { message, sender } = req.body;
       const { _id } = req.params;
@@ -99,3 +100,51 @@ const {
   };
 
  
+  const ticketStatusUpdate = async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const clientId = req.userId;
+  
+      const result = await updateStatusClose({ _id, clientId });
+  
+      if (result._id) {
+        return res.json({
+          status: "success",
+          message: "The ticket has been closed",
+        });
+      }
+      res.json({
+        status: "error",
+        message: "Unable to update the ticket",
+      });
+    } catch (error) {
+      res.json({ status: "error", message: error.message });
+    }
+  };
+
+
+  const deleteClientTicket = async (req, res) => {
+    try {
+      const { _id } = req.params;
+      const clientId = req.userId;
+  
+      const result = await deleteTicket({ _id, clientId });
+  
+      return res.json({
+        status: "success",
+        message: "The ticket has been deleted",
+      });
+    } catch (error) {
+      res.json({ status: "error", message: error.message });
+    }
+  };
+
+
+  module.exports = {
+    createNewTicket,
+    getAllTickets,
+    getUserTickets,
+    updateUserTicket,
+    ticketStatusUpdate,
+    deleteClientTicket
+  }

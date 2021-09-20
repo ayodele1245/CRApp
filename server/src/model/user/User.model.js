@@ -1,5 +1,5 @@
 const { token } = require("morgan");
-const { User }  = require("./User.schema");
+const { UserSchema }  = require("./User.schema");
 
 const insertUser = (userObj) => {
   return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ const getUserByEmail = (email) => {
     if (!email) return false;
 
     try {
-      User.findOne({ email }, (error, data) => {
+      UserSchema.findOne({ email }, (error, data) => {
         if (error) {
           console.log(error);
           reject(error);
@@ -33,7 +33,7 @@ const getUserById = (_id) => {
     if (!_id) return false;
 
     try {
-      User.findOne({ _id }, (error, data) => {
+      UserSchema.findOne({ _id }, (error, data) => {
         if (error) {
           console.log(error);
           reject(error);
@@ -49,7 +49,7 @@ const getUserById = (_id) => {
 const storeUserRefreshJWT = (_id, token) => {
   return new Promise((resolve, reject) => {
     try {
-      User.findOneAndUpdate(
+      UserSchema.findOneAndUpdate(
         { _id },
         {
           $set: { "refreshJWT.token": token, "refreshJWT.addedAt": Date.now() },
@@ -71,7 +71,7 @@ const storeUserRefreshJWT = (_id, token) => {
 const updatePassword = (email, newhashedPass) => {
   return new Promise((resolve, reject) => {
     try {
-      User.findOneAndUpdate(
+      UserSchema.findOneAndUpdate(
         { email },
         {
           $set: { password: newhashedPass },
@@ -90,10 +90,10 @@ const updatePassword = (email, newhashedPass) => {
   });
 };
 
-const verifyUser = (_id, email) => {
+const verify = (_id, email) => {
   return new Promise((resolve, reject) => {
     try {
-      User.findOneAndUpdate(
+      UserSchema.findOneAndUpdate(
         { _id, email, isVerified: false },
         {
           $set: { isVerified: true },
@@ -118,5 +118,5 @@ module.exports = {
   getUserById,
   storeUserRefreshJWT,
   updatePassword,
-  verifyUser,
+  verify,
 };

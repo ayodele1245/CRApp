@@ -13,7 +13,10 @@ const port = process.env.PORT || 2000;
 //API security
 app.use(helmet());
 
-//handle CORS error
+
+// Set json data and handle cors
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
 //MongoDB Connection Setup
@@ -39,8 +42,6 @@ if (process.env.NODE_ENV !== "production") {
   //Logger
   app.use(morgan("tiny"));
 }
-
-app.use(express.json)
 
 
 //Use Routers
