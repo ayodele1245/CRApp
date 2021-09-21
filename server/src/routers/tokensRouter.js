@@ -8,7 +8,7 @@ const { getUserByEmail } = require("../model/user/User.model");
 router.get("/", async (req, res, next) => {
   const { authorization } = req.headers;
 
-  //TODO
+  
 
   const decoded = await verifyRefreshJWT(authorization);
   if (decoded.email) {

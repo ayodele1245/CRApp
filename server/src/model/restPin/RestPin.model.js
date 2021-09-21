@@ -3,7 +3,7 @@ const { ResetPinSchema } = require("./RestPin.schema");
 const { randomPinNumber } = require("../../utils/randomGenerator");
 
 const setPasswordRestPin = async (email) => {
-  //resend 6 digit
+  //resend 6 digit pin
   const pinLength = 6;
   const randPin = await randomPinNumber(pinLength);
 
