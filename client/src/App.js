@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 import { PrivateRoute } from "./components/private-route/PrivateRoute.comp";
-import { DefaultLayout } from "./layout/DefaultLayout";
 import { Dashboard } from "./pages/dashboard/Dashboard.page";
 import { UserVerification } from "./pages/user-verification/UserVerification.page";
 import { Entry } from "./pages/entry/Entry.page";

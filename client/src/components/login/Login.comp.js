@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
 	Container,
 	Row,
@@ -28,8 +27,8 @@ export const LoginForm = ({ formSwitcher }) => {
 		sessionStorage.getItem("accessJWT") && history.replace(from);
 	}, [history, isAuth]);
 
-	const [email, setEmail] = useState("e2@e.com");
-	const [password, setPassword] = useState("password#1F");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
@@ -124,6 +123,3 @@ export const LoginForm = ({ formSwitcher }) => {
 	);
 };
 
-LoginForm.propTypes = {
-	formSwitcher: PropTypes.func.isRequired,
-};

@@ -88,7 +88,7 @@ export const AddTicketForm = () => {
             <Form.Control
               name="subject"
               value={frmData.subject}
-              // minLength="3"
+              minLength="10"
               maxLength="100"
               onChange={handleOnChange}
               placeholder="Subject"
@@ -114,7 +114,7 @@ export const AddTicketForm = () => {
           </Col>
         </Form.Group>
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Message</Form.Label>
           <Form.Control
             as="textarea"
             name="message"
@@ -126,16 +126,11 @@ export const AddTicketForm = () => {
         </Form.Group>
 
         <Button type="submit" variant="info" block>
-          Open Ticket
+          Send Ticket
         </Button>
       </Form>
     </Jumbotron>
   );
 };
 
-// AddTicketForm.propTypes = {
-//   handleOnSubmit: PropTypes.func.isRequired,
-//   handleOnChange: PropTypes.func.isRequired,
-//   frmDt: PropTypes.object.isRequired,
-//   frmDataErro: PropTypes.object.isRequired,
-// };
+

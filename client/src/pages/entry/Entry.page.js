@@ -20,6 +20,8 @@ export const Entry = () => {
 	};
 
 	return (
+		<div>
+			<h1 className = "head">Welcome To Josh Customer Relation App</h1>
 		<div className="entry-page bg-info">
 			<Jumbotron className="form-box">
 				{frmLoad === "login" && <LoginForm formSwitcher={formSwitcher} />}
@@ -33,6 +35,7 @@ export const Entry = () => {
 					/>
 				)}
 			</Jumbotron>
+		</div>
 		</div>
 	);
 };

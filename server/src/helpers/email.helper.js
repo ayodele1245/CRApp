@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
+  host: 'smtp.ethereal.email',
   port: 587,
   auth: {
-    user: "abe.kohler59@ethereal.email",
-    pass: "8Bft1DC6qX7319GZ1f",
-  },
+      user: 'mabelle.metz@ethereal.email',
+      pass: '4YPnYYCkTypynbZCHv'
+  }
 });
 
 const send = (info) => {
@@ -34,7 +34,7 @@ const emailProcessor = ({ email, pin, type, verificationLink = "" }) => {
   switch (type) {
     case "request-new-password":
       info = {
-        from: '"CMR Company" <abe.kohler59@ethereal.email>', // sender address
+        from: '"CR APP" <mabelle.metz@ethereal.email>', // sender address
         to: email, // list of receivers
         subject: "Password rest Pin", // Subject line
         text:
@@ -53,13 +53,13 @@ const emailProcessor = ({ email, pin, type, verificationLink = "" }) => {
 
     case "update-password-success":
       info = {
-        from: '"CMR Company" <abe.kohler59@ethereal.email>', // sender address
+        from: '"CR APP" <mabelle.metz@ethereal.email>', // sender address
         to: email, // list of receivers
         subject: "Password updated", // Subject line
-        text: "Your new password has been update", // plain text body
+        text: "Your new password has been updated", // plain text body
         html: `<b>Hello </b>
        
-      <p>Your new password has been update</p>`, // html body
+      <p>Your new password has been updated</p>`, // html body
       };
 
       send(info);
@@ -67,11 +67,11 @@ const emailProcessor = ({ email, pin, type, verificationLink = "" }) => {
 
     case "new-user-confirmation-required":
       info = {
-        from: '"CMR Company" <abe.kohler59@ethereal.email>', // sender address
+        from: '"CR APP" <mabelle.metz@ethereal.email>', // sender address
         to: email, // list of receivers
         subject: "Please verify your new user", // Subject line
         text:
-          "Please follow the link to very your account before you can login", // plain text body
+          "Please follow the link to verify your account before you can login", // plain text body
         html: `<b>Hello </b>
         <p>Please follow the link to very your account before you can login</p>
         <p>${verificationLink}</P>

@@ -8,3 +8,10 @@
 .form-box {
   box-shadow: 0px 0px 15px -5px black;
 }
+
+.head{
+  justify-content: center;
+  font-size: large;
+  text-align: center;
+  color: deepskyblue;
+}

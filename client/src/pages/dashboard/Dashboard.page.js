@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { TicketTable } from "../../components/ticket-table/TicketTable.comp";
-import tickets from "../../assets/data/dummy-tickets.json";
 import { PageBreadcrumb } from "../../components/breadcrumb/Breadcrumb.comp";
 import { Link } from "react-router-dom";
 
@@ -13,7 +12,7 @@ export const Dashboard = () => {
   const { tickets } = useSelector((state) => state.tickets);
 
   useEffect(() => {
-    if (tickets.length ) {
+    if (!tickets.length) {
       dispatch(fetchAllTickets());
     }
   }, [tickets, dispatch]);

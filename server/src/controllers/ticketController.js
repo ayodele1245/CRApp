@@ -12,14 +12,13 @@ const {
       const { subject, sender, message } = req.body;
 
       const userId = req.userId;
-      const msgsender= req.sender;
 
       const ticketObj = {
         clientId: userId,
         subject,
         conversations: [
           {
-            sender: msgsender,
+            sender,
             message,
           },
         ],

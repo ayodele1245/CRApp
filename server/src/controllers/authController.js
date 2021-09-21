@@ -1,4 +1,4 @@
-const User=require("../model/user/User.schema")
+const UserSchema=require("../model/user/User.schema")
 const {
 	insertUser,
 	getUserByEmail,
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
 		return res.json({
 			status: "error",
 			message:
-				"Your account has not been verified. Please check your email and verify you account before able to login!",
+				"Your account has not been verified. Please check your email and verify your account before able to login!",
 		});
 	}
 
@@ -120,7 +120,7 @@ const resetPassword = async (req, res) => {
 
 
 const updtPassword = async (req, res) => {
-	const { email, pin, newPassword } = req.body;
+	const { pin, email, newPassword } = req.body;
 
 	const getPin = await getPinByEmailPin(email, pin);
 	// 2. validate pin
@@ -156,7 +156,7 @@ const updtPassword = async (req, res) => {
 	}
 	res.json({
 		status: "error",
-		message: "Unable to update your password. plz try again later",
+		message: "We are unable to update your password. please try again later",
 	});
 };
 
