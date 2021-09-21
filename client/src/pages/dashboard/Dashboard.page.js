@@ -33,7 +33,7 @@ export const Dashboard = () => {
               variant="info"
               style={{ fontSize: "2rem", padding: "10px 30px" }}
             >
-              Add New Ticket
+              Add New Message Ticket
             </Button>
           </Link>
         </Col>
@@ -45,7 +45,7 @@ export const Dashboard = () => {
         </Col>
       </Row>
       <Row>
-        <Col className="mt-2">Recently Added tickets</Col>
+        <Col className="mt-2">Recently Added Message tickets</Col>
       </Row>
       <hr />
 
