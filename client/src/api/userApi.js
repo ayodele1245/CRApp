@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootUrl = "http://localhost:5000/";
+const rootUrl = "https://localhost:5000";
 const loginUrl = rootUrl + "user/login";
 const userProfileUrl = rootUrl + "user";
 const logoutUrl = rootUrl + "user/logout";

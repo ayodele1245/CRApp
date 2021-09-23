@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const helmet = require("helmet");
-const morgan = require("morgan");
 const env = require("dotenv");
+const path=require("path");
 //MongoDB Connection Setup
 const mongoose = require("mongoose");
 
 //Import routers
-const userRouter = require("./src/routers/userRouter");
-const ticketRouter = require("./src/routers/ticketRouter");
-const tokensRouter = require("./src/routers/tokensRouter");
+const userRouter = require("./routers/userRouter");
+const ticketRouter = require("./routers/ticketRouter");
+const tokensRouter = require("./routers/tokensRouter");
 
 
 //API security
@@ -22,18 +22,23 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-//Greeting    
-app.get('/', (req, res)=>{
-  res.send("Hello to Custr-Api");
-});
 
 //Use Routers
-app.use("/user", userRouter);
 app.use("/ticket", ticketRouter);
+app.use("/user", userRouter);
 app.use("/tokens", tokensRouter);
 
+//Server static asset if in production
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static(path.join('client/build')))
+  app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+  }
+
 //Error handler
-const handleError = require("./src/utils/errorHandler");
+const handleError = require("./utils/errorHandler");
 
 app.use((req, res, next) => {
   const error = new Error("Resources not found!");
@@ -45,35 +50,6 @@ app.use((error, req, res, next) => {
   handleError(error, res);
 });
 
-
-
-// mongoose.connect(process.env.MONGO_URL, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false,
-//   useCreateIndex: true,
-// });
-
-// // if (process.env.NODE_ENV !== "production") {
-// //   const dB = mongoose.connection;
-// //   dB.on("open", () => {
-// //     console.log("MongoDB is connected");
-// //   });
-
-// //   dB.on("error", (error) => {
-// //     console.log(error);
-// //   });
-
-//   //Logger
-//   app.use(morgan("tiny"));
-// }
-
-if(process.env.NODE_ENV === 'production'){
-app.use(express.static(path.join(__dirname, '../build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build'))
-})
-}
 
 const PORT= process.env.PORT || 5000
 //ENVIRONMENT VARIABLE OR CONSTANTS
