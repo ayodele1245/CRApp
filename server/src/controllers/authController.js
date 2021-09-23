@@ -66,7 +66,7 @@ const loginUser = async (req, res) => {
 	}
 
 	const user = await getUserByEmail(email);
-	if (!user.isVerified) {
+	if (!user) {
 		return res.json({
 			status: "error",
 			message:

@@ -22,10 +22,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-// //Greeting    
-// app.get('/', (req, res)=>{
-//   res.send("Hello to Custr-Api");
-// });
+//Greeting    
+app.get('/', (req, res)=>{
+  res.send("Hello to Custr-Api");
+});
 
 //Use Routers
 app.use("/user", userRouter);
@@ -68,19 +68,23 @@ app.use((error, req, res, next) => {
 //   app.use(morgan("tiny"));
 // }
 
+if(process.env.NODE_ENV === 'production'){
+app.use(express.static(path.join(__dirname, '../build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build'))
+})
+}
 
-
-
-const PORT= process.env.PORT || 2000
+const PORT= process.env.PORT || 5000
 //ENVIRONMENT VARIABLE OR CONSTANTS
 env.config();
 //
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, 
-  useUnifiedTopology:true, useCreateIndex: true})
+mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true,
+  useUnifiedTopology:true})
 .then(()=>{console.log(`Database Connected!`)})
 .catch((error)=>console.log(error.message))
 
-mongoose.set('useFindAndModify', false);
+
 
 
 

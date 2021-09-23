@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootUrl = "http://localhost:2000/";
+const rootUrl = "http://localhost:5000/";
 const otpReqUrl = rootUrl + "user/reset-password";
 const updatePassUrl = rootUrl + "user/reset-password";
 
