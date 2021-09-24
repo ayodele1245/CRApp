@@ -4,13 +4,15 @@
   "description": "API for crApp",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently -n 'server, client \"nodemon server.js\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Joshua",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "concurrently": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -19,13 +21,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.12",
     "nodemailer": "^6.6.5",
     "redis": "^3.0.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  },
+  
   "engines": {
     "node": ">=12"
-  }
+}
 }

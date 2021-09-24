@@ -44,7 +44,7 @@ export const AddTicketForm = () => {
     return () => {
       successMsg && dispatch(restSuccessMSg());
     };
-  }, [dispatch, frmData, frmDataErro]);
+  }, [dispatch, frmData, frmDataErro, successMsg]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;

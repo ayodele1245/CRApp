@@ -23,7 +23,7 @@ export const UserVerification = () => {
     };
 
     !response.status && apiCall();
-  }, [response]);
+  }, [response,]);
 
   //call api and send the _id to verify user
 
