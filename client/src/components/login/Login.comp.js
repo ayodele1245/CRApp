@@ -25,7 +25,7 @@ export const LoginForm = ({ formSwitcher }) => {
 
 	useEffect(() => {
 		sessionStorage.getItem("accessJWT") && history.replace(from);
-	}, [history, isAuth, from]);
+	}, [history, isAuth]);
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");

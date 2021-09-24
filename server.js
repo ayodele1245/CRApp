@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const helmet = require("helmet");
 const env = require("dotenv");
+const morgan= require("morgan");
 const path=require("path");
 //MongoDB Connection Setup
 const mongoose = require("mongoose");
@@ -17,6 +18,10 @@ const tokensRouter = require("./routers/tokensRouter");
 app.use(helmet());
 
 
+//Logger
+app.use(morgan("tiny"));
+
+
 // Set json data and handle cors
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -24,8 +29,9 @@ app.use(cors());
 
 
 //Use Routers
-app.use("/ticket", ticketRouter);
+
 app.use("/user", userRouter);
+app.use("/ticket", ticketRouter);
 app.use("/tokens", tokensRouter);
 
 //Server static asset if in production
