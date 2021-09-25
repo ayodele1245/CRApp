@@ -1,0 +1,19 @@
+.entry-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(247, 243, 239);
+}
+
+.form-box {
+  box-shadow: 0px 0px 15px -5px black;
+
+}
+
+.head{
+  justify-content: center;
+  font-size: large;
+  text-align: center;
+  color: deepskyblue;
+}
