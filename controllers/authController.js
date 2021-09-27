@@ -17,7 +17,7 @@ const { crateAccessJWT, crateRefreshJWT } = require("../helpers/jwt.helper");
 //const { verify } = require("jsonwebtoken");
 
 const { deleteJWT } = require("../helpers/redis.helper");
-const verificationURL = "http://localhost:3000/verification/";
+const verificationURL = "http://localhost:5000/verification/";
 
 const createNewUser = async (req, res) => {
 	const { name, company, address, phone, email, password } = req.body;
