@@ -12,18 +12,18 @@ const initialResponse = {
 };
 export const UserVerification = () => {
   const { _id, email } = useParams();
-  const dt = { _id, email };
+  //const dt = { _id, email };
 
   const [response, setResponse] = useState(initialResponse);
 
   useEffect(() => {
     const apiCall = async () => {
-      const result = await userRegistrationVerification(dt);
+      const result = await userRegistrationVerification({ _id, email });
       setResponse(result);
     };
 
     !response.status && apiCall();
-  }, [response]);
+  }, [response,  _id, email ]);
 
   //call api and send the _id to verify user
 
