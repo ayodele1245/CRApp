@@ -83,7 +83,7 @@ const loginUser = async (req, res) => {
 		return res.json({ status: "error", message: "Invalid email or password!" });
 	}
 
-	const accessJWT = await crateAccessJWT(user.email, `${user._id}`);
+	//const accessJWT = await crateAccessJWT(user.email, `${user._id}`);
 	const refreshJWT = await crateRefreshJWT(user.email, `${user._id}`);
 
 	res.json({
@@ -167,7 +167,7 @@ const logoutUser = async (req, res) => {
 	const _id = req.userId;
 
 	// 2. delete accessJWT from redis database
-	deleteJWT(authorization);
+//deleteJWT(authorization);
 
 	// 3. delete refreshJWT from mongodb
 	const result = await storeUserRefreshJWT(_id, "");
