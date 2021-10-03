@@ -3,11 +3,11 @@ import { Jumbotron } from "react-bootstrap";
 
 import RegistrationForm from "../../components/registration-form/RegistrationForm.comp";
 
-import "./registration.style.css";
+import "./registration.style.css"
 
 export const Registration = () => {
   return (
-    <div className="registration-page bg-info">
+    <div className="registration-page">
       <div className="mt-5">
         <Jumbotron className="form-box">
           <RegistrationForm />

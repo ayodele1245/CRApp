@@ -12,7 +12,7 @@ export const PasswordOtpForm = () => {
 	const { showUpdatePassForm } = useSelector(state => state.password);
 
 	return (
-		<div className="entry-page bg-info">
+		<div className="passwd-page ">
 			<Jumbotron className="form-box">
 				{showUpdatePassForm ? <UpdatePasswordForm /> : <ResetPassword />}
 				<div className="text-center">

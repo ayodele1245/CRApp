@@ -24,11 +24,11 @@ export const LoginForm = ({ formSwitcher }) => {
 	let { from } = location.state || { from: { pathname: "/" } };
 
 	useEffect(() => {
-		sessionStorage.getItem("accessJWT") && history.replace(from);
+		sessionStorage.getItem("accessJWT") && history.replace({ from });
 	}, [history, isAuth, from]);
 
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("josh1@gmail.com");
+	const [password, setPassword] = useState("Josh@gmail1");
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
